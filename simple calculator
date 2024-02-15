@@ -1,64 +1,53 @@
+// C++ program to create calculator using
+// switch statement
 #include <iostream>
-#include <vector>
+using namespace std;
 
-// Function to draw the Tic Tac Toe board
-void drawBoard(const std::vector<std::vector<char>>& board) {
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            std::cout << board[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
+// Driver code
+int main()
+{
+	char op;
+	float num1, num2;
+
+	// It allows user to enter operator
+	// i.e. +, -, *, /
+	cin >> op;
+
+	// It allow user to enter the operands
+	cin >> num1 >> num2;
+
+	// Switch statement begins
+	switch (op) {
+	// If user enter +
+	case '+':
+		cout << num1 + num2;
+		break;
+
+	// If user enter -
+	case '-':
+		cout << num1 - num2;
+		break;
+
+	// If user enter *
+	case '*':
+		cout << num1 * num2;
+		break;
+
+	// If user enter /
+	case '/':
+		cout << num1 / num2;
+		break;
+
+	// If the operator is other than +, -, * or /,
+	// error message will display
+	default:
+		cout << "Error! operator is not correct";
+	}
+	// switch statement ends
+
+	return 0;
 }
 
-// Function to check if a player has won
-bool checkWin(const std::vector<std::vector<char>>& board, char player) {
-    // Check rows and columns for a win
-    for (int i = 0; i < 3; ++i) {
-        if (board[i][0] == player && board[i][1] == player && board[i][2] == player) return true; // Row
-        if (board[0][i] == player && board[1][i] == player && board[2][i] == player) return true; // Column
-    }
-    // Check diagonals for a win
-    if (board[0][0] == player && board[1][1] == player && board[2][2] == player) return true; // Diagonal
-    if (board[0][2] == player && board[1][1] == player && board[2][0] == player) return true; // Anti-diagonal
-    return false;
-}
+        
 
-int main() {
-    std::vector<std::vector<char>> board(3, std::vector<char>(3, '.')); // Initialize an empty 3x3 board
-    int row, col;
-    char currentPlayer = 'X';
-
-    // Main game loop
-    for (int i = 0; i < 9; ++i) {
-        std::cout << "Player " << currentPlayer << "'s turn. Enter row and column (0-2): ";
-        std::cin >> row >> col;
-
-        // Check if the input is valid
-        if (row < 0 || row > 2 || col < 0 || col > 2 || board[row][col] != '.') {
-            std::cout << "Invalid move! Try again." << std::endl;
-            --i; // Repeat the current turn
-            continue;
-        }
-
-        // Place the player's symbol on the board
-        board[row][col] = currentPlayer;
-        drawBoard(board);
-
-        // Check if the current player has won
-        if (checkWin(board, currentPlayer)) {
-            std::cout << "Player " << currentPlayer << " wins!" << std::endl;
-            break;
-        }
-
-        // Switch to the other player
-        currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
-    }
-
-    // If no one wins after 9 moves, it's a draw
-    if (checkWin(board, 'X') == false && checkWin(board, 'O') == false) {
-        std::cout << "It's a draw!" << std::endl;
-    }
-
-    return 0;
-}
+  
